@@ -42,7 +42,7 @@ There is latest tag available:
 ### Authentication
 Since Infobip RTC is just SDK, it means you are developing your own application, and you only use Infobip RTC as dependency. Your application has your own users, which we wall call subscribers throughout this guide. So, in order to use Infobip RTC, you need to register your subscribers to our platform. Credentials your subscribers use to connect to your application are irrelevant to Infobip. We only need identity with which they will use to present themselves. And when we have their identity, we can generate token that you will assign for them to use. With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
 
-In order to generate these tokens for your subscribers, you need to call our [`/webrtc/token`](https://ibdemo.readme.io/v1.0/docs/generate-token) HTTP API method with proper parameters. Also, there you will authenticate yourself against Infobip platform, so we can relate subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
+In order to generate these tokens for your subscribers, you need to call our [`/webrtc/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method with proper parameters. Also, there you will authenticate yourself against Infobip platform, so we can relate subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
 In response you will receive token, that you will use to instantiate [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client in your web application.
 
 ### Infobip RTC Client
@@ -137,7 +137,7 @@ infobipRTC.on('incoming-call', function(incomingCall) {
 });
 ```
 
-If you are in the middle of a call, naturally, you cannot receive second call. So, if someone makes incoming call to you while you are talking, you will receive an `missed-call` event:
+If you are in the middle of a call, naturally, you cannot receive second call. So, if someone makes incoming call to you while you are talking, you will receive a `missed-call` event:
 
 ```
 infobipRTC.on('missed-call', function (event) {
