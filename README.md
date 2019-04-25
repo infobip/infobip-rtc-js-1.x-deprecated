@@ -100,8 +100,8 @@ Most important part of call is definitively media that travels across subscriber
 ```
 outgoingCall.on('established', function(event) {
   console.log('Alice answered call!');
-  $('#remote').srcObject = event.remoteStream;
-  $('#local').srcObject = event.localStream;
+  document.getElementById('remote').srcObject = event.remoteStream;
+  document.getElementById('local').srcObject = event.localStream;
 });
 ```
 
