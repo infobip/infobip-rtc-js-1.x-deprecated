@@ -95,13 +95,12 @@ outgoingCall.on('error', function(event) {
 });
 ```
 
-Most important part of call is definitively media that travels across subscribers. It can be handled in `established` event, there you have both local and remote media streams. Example how you can use them:
+Most important part of call is definitively media that travels across subscribers. It can be handled in `established` event, there you have remote media stream. Example how you can use it:
 
 ```
 outgoingCall.on('established', function(event) {
   console.log('Alice answered call!');
   document.getElementById('remote').srcObject = event.remoteStream;
-  document.getElementById('local').srcObject = event.localStream;
 });
 ```
 
