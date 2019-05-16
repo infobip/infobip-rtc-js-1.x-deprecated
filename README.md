@@ -3,6 +3,9 @@ Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip's
 
 Here you will find overview and quick guide how to connect to Infobip WebRTC platform. There is also in-depth reference documentation available.
 
+### Prerequisites
+You must use ES6 for this project.
+
 ### First time setup
 In order to use Infobip RTC, you need to have WebRTC enabled on your account, and that's it! You are ready to make WebRTC calls. Please contact your account manager to enable WebRTC.
 
