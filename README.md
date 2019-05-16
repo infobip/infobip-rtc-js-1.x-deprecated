@@ -106,6 +106,12 @@ outgoingCall.on('established', function(event) {
   document.getElementById('remote').srcObject = event.remoteStream;
 });
 ```
+On `established` event remote stream is available and its used in different ways. Here is one way you can use it:
+
+```
+<audio id="remoteVideo" autoplay "></audio>
+document.getElementById('remoteVideo').srcObject = event.remoteStream;
+```
 
 When event handlers are set-up and call is established, there are few things that you can do with actual call. One of them, of course, is to hangup. That can be done via [`hangup`](https://github.com/infobip/infobip-rtc-js/wiki/Call#hangup) method on call, and after that, both parties will receive `hangup` event upon hangup completion.
 
