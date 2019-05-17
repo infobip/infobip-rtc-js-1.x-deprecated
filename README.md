@@ -106,7 +106,7 @@ outgoingCall.on('established', function(event) {
   document.getElementById('remote').srcObject = event.remoteStream;
 });
 ```
-Once remote media is received on 'established' event you can stream it on your HTML page. Here is exemple:
+Once remote media is received on `established` event you can stream it on your HTML page. Here is exemple:
 
 ```
 <audio id="remoteAudio" autoplay />
