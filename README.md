@@ -98,19 +98,15 @@ outgoingCall.on('error', function(event) {
 });
 ```
 
-Most important part of call is definitively media that travels across subscribers. It can be handled in `established` event, there you have remote media stream. Example how you can use it:
-
-```
-outgoingCall.on('established', function(event) {
-  console.log('Alice answered call!');
-  document.getElementById('remote').srcObject = event.remoteStream;
-});
-```
-Once remote media is received on `established` event you can stream it on your HTML page. Here is exemple:
+Most important part of call is definitively media that travels across subscribers. It can be handled in `established` event, there you have remote media which can be streamed into your HTML page. Example how you can use it:
 
 ```
 <audio id="remoteAudio" autoplay />
-document.getElementById('remoteAudio').srcObject = event.remoteStream;
+
+outgoingCall.on('established', function(event) {
+  console.log('Alice answered call!');
+  document.getElementById('remoteAudio').srcObject = event.remoteStream;
+});
 ```
 
 When event handlers are set-up and call is established, there are few things that you can do with actual call. One of them, of course, is to hangup. That can be done via [`hangup`](https://github.com/infobip/infobip-rtc-js/wiki/Call#hangup) method on call, and after that, both parties will receive `hangup` event upon hangup completion.
