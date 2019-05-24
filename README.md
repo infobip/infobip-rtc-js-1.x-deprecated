@@ -1,18 +1,18 @@
 ### Introduction
-Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip's WebRTC platform. It gives you ability to enrich your web applications with real-time communications in minimum time, while focusing on your application's user experience and business logic. We currently support audio calls between two WebRTC users, and phone calls between WebRTC user and actual phone device.
+Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip's WebRTC platform. It gives you the ability to enrich your web applications with real-time communications in minimum time, while focusing on your application's user experience and business logic. We currently support audio calls between two WebRTC users, and phone calls between WebRTC user and actual phone device.
 
-Here you will find overview and quick guide how to connect to Infobip WebRTC platform. There is also in-depth reference documentation available.
+Here you will find an overview and quick guide on how to connect to Infobip WebRTC platform. There is also in-depth reference documentation available.
 
 ### Prerequisites
 Infobip RTC SDK requires ES6.
 
-### First time setup
+### First-time setup
 In order to use Infobip RTC, you need to have WebRTC enabled on your account, and that's it! You are ready to make WebRTC calls. Please contact your account manager to enable WebRTC.
 
 ### Getting SDK
-There are few ways that you can get distribution of our SDK. We publish it as a NPM package and as a standalone JS file hosted on a CDN.
+There are a few ways that you can get the distribution of our SDK. We publish it as an NPM package and as a standalone JS file hosted on a CDN.
 
-If you want to add it as a NPM dependency, run:
+If you want to add it as an NPM dependency, run:
 
 ```
 npm install infobip-rtc --save
@@ -43,10 +43,10 @@ There is latest tag available:
 ```
 
 ### Authentication
-Since Infobip RTC is just SDK, it means you are developing your own application, and you only use Infobip RTC as dependency. Your application has your own users, which we wall call subscribers throughout this guide. So, in order to use Infobip RTC, you need to register your subscribers to our platform. Credentials your subscribers use to connect to your application are irrelevant to Infobip. We only need identity with which they will use to present themselves. And when we have their identity, we can generate token that you will assign for them to use. With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
+Since Infobip RTC is just SDK, it means you are developing your own application, and you only use Infobip RTC as a dependency. Your application has your own users, which we wall call subscribers throughout this guide. So, in order to use Infobip RTC, you need to register your subscribers to our platform. Credentials your subscribers use to connect to your application are irrelevant to Infobip. We only need an identity with which they will use to present themselves. And when we have their identity, we can generate a token that you will assign for them to use. With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
 
-In order to generate these tokens for your subscribers, you need to call our [`/webrtc/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method with proper parameters. Also, there you will authenticate yourself against Infobip platform, so we can relate subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
-In response you will receive token, that you will use to instantiate [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client in your web application.
+In order to generate these tokens for your subscribers, you need to call our [`/webrtc/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method with proper parameters. Also, there you will authenticate yourself against Infobip platform, so we can relate the subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
+In response, you will receive the token, that you will use to instantiate [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client in your web application.
 
 ### Infobip RTC Client
 After you received token via HTTP API, you are ready to instantiate [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client. It can be done using these commands:
@@ -57,7 +57,7 @@ let options = { debug: true }
 let infobipRTC = new InfobipRTC(token, options);
 ```
 
-Note that this does not actually connect to Infobip WebRTC platform, it just creates new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connecting is done via [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set-up event handlers, so you can do something when connection is set-up, when connection is lost, etc. Events are set-up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
+Note that this does not actually connect to Infobip WebRTC platform, it just creates a new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connecting is done via [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set-up event handlers, so you can do something when connection is set-up, when connection is lost, etc. Events are set-up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
 
 ```
 infobipRTC.on('connected', function(event) {
@@ -75,7 +75,7 @@ infobipRTC.connect();
 ```
 
 ### Making a call
-You can call another WebRTC subscriber, if you know it's identity. It is done via [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
+You can call another WebRTC subscriber if you know his identity. It is done via [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
 
 ```
 let outgoingCall = infobipRTC.call('Alice');
@@ -98,7 +98,7 @@ outgoingCall.on('error', function(event) {
 });
 ```
 
-Most important part of call is definitively media that travels across subscribers. It can be handled in `established` event, there you have remote media which can be streamed into your HTML page. Example how you can use it:
+The most important part of the call is definitively the media that travels across subscribers. It can be handled in `established` event, there you have remote media which can be streamed into your HTML page. Example of how you can use it:
 
 ```
 <audio id="remoteAudio" autoplay />
@@ -128,7 +128,7 @@ outgoingCall.mute(true);
 ```
 
 ### Receiving a call
-Besides making outgoing calls, you can also receive incoming calls. In order to do that, you need to register `incoming-call` event handler of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client. There you can define behavior on incoming call. One of the most common thing to do there is to show Answer and Reject options on some UI. For purposes of this guide, let's see example that answers incoming call as soon as it arrives:
+Besides making outgoing calls, you can also receive incoming calls. In order to do that, you need to register `incoming-call` event handler of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client. There you can define behavior on incoming call. One of the most common things to do there is to show Answer and Reject options on some UI. For purposes of this guide, let's see example that answers incoming call as soon as it arrives:
 
 ```
 infobipRTC.on('incoming-call', function(incomingCall) {
@@ -150,7 +150,7 @@ infobipRTC.on('missed-call', function (event) {
 ```
 
 ### Calling phone number
-It is very much similar to calling regular WebRTC user, you just use [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts optional second parameter, options in which you can define from parameter. It's value will display on calling phone device as Caller ID. Result of [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is also [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) that you can do everything you could when using [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
+It is very much similar to calling regular WebRTC user, you just use [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts an optional second parameter, options in which you can define from parameter. Its value will display on calling phone device as Caller ID. Result of [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is also [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) that you can do everything you could when using [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
 
 ```
 let outgoingCall = infobipRTC.callPhoneNumber('41793026727', { from: '33755531044' });
