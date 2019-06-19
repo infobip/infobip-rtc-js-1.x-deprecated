@@ -141,14 +141,6 @@ infobipRTC.on('incoming-call', function(incomingCall) {
 });
 ```
 
-If you are in the middle of a call, naturally, you cannot receive second call. So, if someone makes incoming call to you while you are talking, you will receive a `missed-call` event:
-
-```
-infobipRTC.on('missed-call', function (event) {
-  console.log('Missed call from: ' + event.caller.identity);
-});
-```
-
 ### Calling phone number
 It is very much similar to calling regular WebRTC user, you just use [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts an optional second parameter, options in which you can define from parameter. Its value will display on calling phone device as Caller ID. Result of [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is also [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) that you can do everything you could when using [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
 
