@@ -144,7 +144,7 @@ Besides making outgoing calls, you can also receive incoming calls. In order to 
 
 ```
 infobipRTC.on('incoming-call', function(incomingCall) {
-  console.log('Received incoming call from: ' + incomingCall.caller.identity);
+  console.log('Received incoming call from: ' + incomingCall.source().identity);
    
   incomingCall.on('established', function() {});
   incomingCall.on('hangup', function() {});
