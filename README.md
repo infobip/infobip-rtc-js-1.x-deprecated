@@ -139,6 +139,15 @@ Also, you can check [`call status`](https://github.com/infobip/infobip-rtc-js/wi
 CallStatus status = outgoingCall.status();
 ```
 
+Also, you can check information such as [`duration`](https://github.com/infobip/infobip-rtc-js/wiki/Call#duration), [`start time`](https://github.com/infobip/infobip-rtc-js/wiki/Call#startTime), [`establish time`](https://github.com/infobip/infobip-rtc-js/wiki/Call#establishTime) and [`end time`](https://github.com/infobip/infobip-rtc-js/wiki/Call#endTime) by calling these methods:
+
+```
+let duration = outgoingCall.duration();
+let startTime = outgoingCall.startTime();
+let establishTime = outgoingCall.establishTime();
+let endTime = outgoingCall.endTime();
+```
+
 ### Receiving a call
 Besides making outgoing calls, you can also receive incoming calls. In order to do that, you need to register `incoming-call` event handler of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client. There you can define behavior on incoming call. One of the most common things to do there is to show Answer and Reject options on some UI. For purposes of this guide, let's see example that answers incoming call as soon as it arrives:
 
