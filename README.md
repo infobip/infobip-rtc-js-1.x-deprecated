@@ -43,9 +43,9 @@ There is latest tag available:
 ```
 
 ### Authentication
-Since Infobip RTC is just SDK, it means you are developing your own application, and you only use Infobip RTC as a dependency. Your application has your own users, which we wall call subscribers throughout this guide. So, in order to use Infobip RTC, you need to register your subscribers to our platform. Credentials your subscribers use to connect to your application are irrelevant to Infobip. We only need an identity with which they will use to present themselves. And when we have their identity, we can generate a token that you will assign for them to use. With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
+Since Infobip RTC is just SDK, it means you are developing your own application, and you only use Infobip RTC as a dependency. Your application has your own users, which we will call subscribers throughout this guide. So, in order to use Infobip RTC, you need to register your subscribers to our platform. Credentials your subscribers use to connect to your application are irrelevant to Infobip. We only need an identity they will use to present themselves. And when we have their identity, we can generate a token that you will assign for them to use. With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
 
-In order to generate these tokens for your subscribers, you need to call our [`/webrtc/1/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method with proper parameters. Also, there you will authenticate yourself against Infobip platform, so we can relate the subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
+In order to generate these tokens for your subscribers, you need to call our [`/webrtc/1/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method with proper parameters. Also, you will authenticate yourself against Infobip platform there, so we can relate the subscriber's token to you. Typically, generating token occurs after your subscribers are authenticated inside your application.
 In response, you will receive the token, that you will use to instantiate [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client in your web application.
 
 ### Infobip RTC Client
@@ -81,6 +81,12 @@ You can call another WebRTC subscriber if you know his identity. It is done via 
 let outgoingCall = infobipRTC.call('Alice');
 ```
 
+Or if you want to initiate video call: 
+
+```
+let outgoingCall = infobipRTC.call('Alice', {video: true});
+```
+
 As you can see, [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method returns instance of [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) as a result. With it you can track status of your call and respond to events. Similar as for client, you can set-up event handlers, so you can do something when called subscriber answers the call, rejects it, when call is ended, etc. You set-up event handlers with this code:
 
 ```
@@ -98,7 +104,9 @@ outgoingCall.on('error', function(event) {
 });
 ```
 
-The most important part of the call is definitively the media that travels across subscribers. It can be handled in `established` event, there you have remote media which can be streamed into your HTML page. Example of how you can use it:
+The most important part of the call is definitively the media that travels across subscribers. It can be handled in `established` event, there you have remote media which can be streamed into your HTML page.
+
+In case of audio call, you should set the stream that you got to your audio HTML element. Example of how you can use it:
 
 ```
 <audio id="remoteAudio" autoplay />
@@ -106,6 +114,19 @@ The most important part of the call is definitively the media that travels acros
 outgoingCall.on('established', function(event) {
   console.log('Alice answered call!');
   document.getElementById('remoteAudio').srcObject = event.remoteStream;
+});
+```
+
+In case of video call, you should set to your video HTML elements both the stream from your camera and the stream that you got. Example of how you can use it:
+
+```
+<video id="localVideo" autoplay />
+<video id="remoteVideo" autoplay />
+
+outgoingCall.on('established', function(event) {
+  console.log('Alice answered video call!');
+  document.getElementById('localVideo').srcObject = event.localStream;
+  document.getElementById('remoteVideo').srcObject = event.remoteStream;
 });
 ```
 
