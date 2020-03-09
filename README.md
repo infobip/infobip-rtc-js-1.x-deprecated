@@ -182,3 +182,20 @@ It is similar to calling the regular WebRTC user, you just use the [`callPhoneNu
 ```
 let outgoingCall = infobipRTC.callPhoneNumber('41793026727', { from: '33755531044' });
 ```
+
+### Browser Compatibility
+We support up to 5 most recent versions of these browsers (unless otherwise indicated):
+
+|                         |                               | ![chrome](icons/chrome.png)  | ![firefox](icons/firefox.png) | ![safari](icons/safari.png)  | ![edge](icons/edge.png)      | ![opera](icons/opera.png)  | ![opera](icons/explorer.png) |
+|------------------------:|------------------------------:|:----------------------------:|:-----------------------------:|:----------------------------:|:----------------------------:|:--------------------------:|:----------------------------:|
+|                         |                               | **Google Chrome**            | **Mozilla Firefox**           | **Safari***                  | **Microsoft Edge**           | **Opera**                  | **Internet Explorer**        |
+| **Android**             | ![android](icons/android.png) | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
+| **iOS**                 | ![ios](icons/ios.png)         | ![chrome](icons/no.png)      | ![chrome](icons/no.png)       | ![chrome](icons/yes.png)     | ![chrome](icons/no.png)      | ![chrome](icons/no.png)    | ![chrome](icons/no.png)      |
+| **Linux**               | ![linux](icons/linux.png)     | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
+| **macOS**               | ![macOs](icons/mac.png)       | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
+| **Windows**             | ![windows](icons/windows.png) | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
+
+\* WebRTC support in Safari started with version 11.
+
+> **Note**: Mobile browsers are not able to receive calls and maintain call connectivity in the background. 
+> We recommend using [iOS](https://github.com/infobip/infobip-rtc-ios) and [Android](https://github.com/infobip/infobip-rtc-android) SDKs for creating mobile WebRTC Applications.
