@@ -166,7 +166,8 @@ let endTime = outgoingCall.endTime();
 Besides making outgoing calls, you can also receive incoming calls. In order to do that, you need to register the `incoming-call` event handler of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC) client. That is where you define the behavior of the incoming call. One of the most common things to do is to show Answer and Reject options on the UI. For the purpose of this guide, let's look at an example that answers the incoming call as soon as it arrives:
 
 ```
-infobipRTC.on('incoming-call', function(incomingCall) {
+infobipRTC.on('incoming-call', function(incomingCallEvent) {
+  const incomingCall = incomingCallEvent.incomingCall;
   console.log('Received incoming call from: ' + incomingCall.source().identity);
    
   incomingCall.on('established', function() {});
@@ -179,8 +180,16 @@ infobipRTC.on('incoming-call', function(incomingCall) {
 ### Calling phone number
 It is similar to calling the regular WebRTC user, you just use the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead of [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts an optional second parameter, where you define the “from” parameter. Its value will be displayed on the calling phone device as the Caller ID. The result of the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is the [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) with which you can do everything as when using the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
 
+* Example of calling phone number with `from` defined: 
+
 ```
-let outgoingCall = infobipRTC.callPhoneNumber('41793026727', { from: '33755531044' });
+let outgoingCall = infobipRTC.callPhoneNumber('41793026727', new CallPhoneNumberOptions('33712345678'));
+```
+
+* Example of calling phone number without `from` defined: 
+
+```
+let outgoingCall = infobipRTC.callPhoneNumber('41793026727');
 ```
 
 ### Browser Compatibility
