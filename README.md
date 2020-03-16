@@ -82,7 +82,7 @@ let outgoingCall = infobipRTC.call('Alice');
 Or if you want to initiate video call: 
 
 ```
-let outgoingCall = infobipRTC.call('Alice', {video: true});
+let outgoingCall = infobipRTC.call('Alice', CallOptions.builder().setVideo(true).build());
 ```
 As you can see, the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method returns an instance of [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) as the result. With it you can track the status of your call and respond to events. Similar to the client, you can set up event handlers, so you can do something when the called subscriber answers the call, rejects it, the call is ended, etc. You set up event handlers with the following code:
 
@@ -183,7 +183,7 @@ It is similar to calling the regular WebRTC user, you just use the [`callPhoneNu
 * Example of calling phone number with `from` defined: 
 
 ```
-let outgoingCall = infobipRTC.callPhoneNumber('41793026727', new CallPhoneNumberOptions('33712345678'));
+let outgoingCall = infobipRTC.callPhoneNumber('41793026727', CallPhoneNumberOptions.builder().setFrom('33712345678').build());
 ```
 
 * Example of calling phone number without `from` defined: 
