@@ -33,7 +33,7 @@ import {InfobipRTC} from "infobip-rtc";
 You can include our distribution file in your JavaScript from our CDN:
 
 ```
-<script src="//rtc.cdn.infobip.com/0.0.14/infobip.rtc.js"></script>
+<script src="//rtc.cdn.infobip.com/0.2.7/infobip.rtc.js"></script>
 ```
 
 The latest tag is also available:
@@ -178,7 +178,7 @@ infobipRTC.on('incoming-call', function(incomingCallEvent) {
 ```
 
 ### Calling phone number
-It is similar to calling the regular WebRTC user, you just use the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead of [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts an optional second parameter, where you define the “from” parameter. Its value will be displayed on the calling phone device as the Caller ID. The result of the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is the [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) with which you can do everything as when using the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
+It is similar to calling the regular WebRTC user, you just use the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) method instead of [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call). This method accepts an optional second parameter, where you define the `from` parameter. Its value will be displayed on the calling phone device as the Caller ID. The result of the [`callPhoneNumber`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#callPhoneNumber) is the [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) with which you can do everything as when using the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method:
 
 * Example of calling phone number with `from` defined: 
 
