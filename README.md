@@ -1,13 +1,13 @@
 ### Introduction
-Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip Voice platform, giving you the ability to enrich your web applications with real-time communications in minimum time, while you focus on your application's user experience and business logic. We currently support audio and video calls between two web or app users, and phone calls between web or app user and actual phone device. 
+Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip platform, giving you the ability to enrich your web applications with real-time communications in minimum time, while you focus on your application's user experience and business logic. We currently support audio and video calls between two web or app users, and phone calls between web or app user and actual phone device. 
 
-Here you will find an overview and a quick guide on how to connect to Infobip Voice platform. There is also in-depth reference documentation available. 
+Here you will find an overview and a quick guide on how to connect to Infobip platform. There is also in-depth reference documentation available. 
 
 ### Prerequisites
 Infobip RTC SDK requires ES6.
 
 ### First-time setup
-In order to use Infobip RTC, you need to have Web and In-app Voice enabled on your account and that's it! You are ready to make web and in-app voice calls. Please contact your account manager to enable Web and In-app Voice.
+In order to use Infobip RTC, you need to have Web and In-app Calls enabled on your account and that's it! You are ready to make web and in-app voice calls. Please contact your account manager to enable Web and In-app Voice.
 
 ### Getting SDK
 There are a few ways in which you can get our SDK. We publish it as an NPM package and as a standalone JS file hosted on a CDN. 
@@ -55,7 +55,7 @@ let token = obtainToken(); // here you call '/webrtc/1/token'
 let options = { debug: true }
 let infobipRTC = new InfobipRTC(token, options);
 ```
-Note that this doesn’t actually connect to Infobip Voice platform, it just creates a new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connection is made via the [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set up event handlers, so you can perform something when the connection is set up, when the connection is lost, etc. Events are set up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
+Note that this doesn’t actually connect to Infobip platform, it just creates a new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connection is made via the [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set up event handlers, so you can perform something when the connection is set up, when the connection is lost, etc. Events are set up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
 
 ```
 infobipRTC.on('connected', function(event) {
