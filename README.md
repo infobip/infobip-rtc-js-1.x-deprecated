@@ -4,7 +4,7 @@ Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip p
 Here you will find an overview and a quick guide on how to connect to Infobip platform. There is also in-depth reference documentation available. 
 
 ### Prerequisites
-Infobip RTC SDK requires ES6.
+Infobip RTC SDK requires ES6. Also secure connection over HTTPS is required, except for localhost address.
 
 ### First-time setup
 In order to use Infobip RTC, you need to have Web and In-app Calls enabled on your account and that's it! You are ready to make web and in-app voice calls. Please contact your account manager to enable Web and In-app Voice.
