@@ -115,7 +115,7 @@ outgoingCall.on('established', function(event) {
 In case of video call, you should set to your video HTML elements both the stream from your camera and the stream that you got. Example of how you can use it:
 
 ```
-<video id="localVideo" autoplay />
+<video id="localVideo" autoplay muted />
 <video id="remoteVideo" autoplay />
 
 outgoingCall.on('established', function(event) {
