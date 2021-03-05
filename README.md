@@ -193,6 +193,101 @@ let outgoingCall = infobipRTC.callPhoneNumber('41793026727', CallPhoneNumberOpti
 let outgoingCall = infobipRTC.callPhoneNumber('41793026727');
 ```
 
+### Conference call
+
+You can have a conference call with other participants that are also in the same conference room. The conference call will start as soon as at least one participant joins.
+
+Joining the room is done via the [`joinConference`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#joinConference) method:
+
+```
+let conference = infobipRTC.joinConference('conference-demo');
+```
+Or if you want to join the conference with your video:
+```
+let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().video(true).build());
+```
+
+As you can see, that method returns an instance of [`Conference`](https://github.com/infobip/infobip-rtc-js/wiki/Conference) as the result.
+With it, you can track the status of your conference call, do some actions (mute, share the screen, start sending video...) and respond to events.
+
+After the user successfully joined the conference, the `joined` event will be emitted. It contains an audio media stream and a list of users that are already at the conference.
+You should implement an event handler for it, where the stream should be set to the audio HTML element, and the other conference participants might be shown to the user.
+
+Here is an example of how to handle [`conference events`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#on-conference).
+
+Let's assume that we do have an audio HTML elements with an id `conferenceAudio` and a video HTML elements with an id  `localVideo`.
+```
+conference.on('joined', function(event) {
+  $('#conferenceAudio').srcObject = event.stream;
+  var users = event.users.map(user => user.identity).join(", ")
+  console.log('You have joined the conference with ' + event.users.length + " more participants: " + users);
+});
+conference.on('left', function(event) {
+  console.log('You have left the conference.');
+});
+conference.on('error', function(event) {
+  console.log('Error!');
+});
+conference.on('user-joined', function(event) {
+  console.log(event.user.identity + ' user joined.');
+});
+conference.on('user-left', function(event) {
+  console.log(event.identity + ' user left.');
+});
+conference.on('user-muted', function(event) {
+  console.log(event.identity + ' user muted himself.');
+});
+conference.on('user-unmuted', function(event) {
+  console.log(event.identity + ' user unmuted himself.');
+});
+conference.on('local-video-added', function (event) {
+  $('#localVideo').srcObject = event.stream;
+});
+conference.on('local-video-updated', function (event) {
+  $('#localVideo').srcObject = event.stream;
+}); 
+conference.on('local-video-removed', function (event) {
+  $('#localVideo').srcObject = null;
+});
+```
+
+The next two events are fired when another user adds or removes the video.
+You should implement these event handlers in order to add and/or remove a HTML video element with a media stream.
+```
+conference.on('user-video-added', function (event) { 
+  // add a new HTML video element with id remoteVideo-event.identity
+  $('#remoteVideo-' + event.identity).srcObject = event.stream;
+});
+conference.on('user-video-removed', function (event) {
+  // remove the HTML video element with id remoteVideo-event.identity
+});
+```
+
+When event handlers are set up and the conference call is established, there are a few things that you can do with the actual conference.
+
+One of them, of course, is to leave it. That can be done via the [`leave`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#leave) method at the conference. 
+Other participants will receive the `user-left` event upon leave completion.
+```
+conference.leave();
+```
+
+During the conference call, you can also mute (and unmute) your audio, by calling the [`mute`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#mute) method in the following way:
+```
+conference.mute(true);
+```
+
+During the conference call, you can start or stop sending your video, by calling the [`localVideo`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#localVideo) method in the following way:
+```
+conference.localVideo(true);
+```
+After this method, the `local-video-updated` event is fired.
+
+During the conference call, you can start or stop sharing your screen, by calling the [`screenShare`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#screenShare) method in the following way:
+```
+conference.screenShare(true);
+```
+After this method, the `local-video-updated` event is fired.
+
 ### Browser Compatibility
 We support up to 5 most recent versions of these browsers (unless otherwise indicated):
 
