@@ -197,6 +197,8 @@ let outgoingCall = infobipRTC.callPhoneNumber('41793026727');
 
 You can have a conference call with other participants that are also in the same conference room. The conference call will start as soon as at least one participant joins.
 
+Conference call is in the beta stage and available for both video and audio, with a maximum limit of 12 participants.
+
 Joining the room is done via the [`joinConference`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#joinConference) method:
 
 ```
