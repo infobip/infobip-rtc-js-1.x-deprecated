@@ -1,7 +1,7 @@
 ### Introduction
-Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip platform, giving you the ability to enrich your web applications with real-time communications in minimum time, while you focus on your application's user experience and business logic. We currently support audio and video calls between two web or app users, and phone calls between web or app user and actual phone device. 
+Infobip RTC is a JavaScript SDK which enables you to take advantage of Infobip platform, giving you the ability to enrich your web applications with real-time communications in minimum time, while you focus on your application's user experience and business logic. We currently support audio and video calls between two web or app users, and phone calls between a web or an app user and actual phone device. 
 
-Here you will find an overview and a quick guide on how to connect to Infobip platform. There is also in-depth reference documentation available. 
+Here you will find an overview, and a quick guide on how to connect to Infobip platform. There is also in-depth reference documentation available. 
 
 ### Prerequisites
 Infobip RTC SDK requires ES6. Also secure connection over HTTPS is required, except for localhost address.
@@ -18,7 +18,7 @@ If you want to add it as an NPM dependency, run the following:
 npm install infobip-rtc --save
 ```
 
-And then you use it in your project like this:
+After which you would use it in your project like this:
 
 ```
 let InfobipRTC = require('infobip-rtc');
@@ -56,7 +56,7 @@ let token = obtainToken(); // here you call '/webrtc/1/token'
 let options = { debug: true }
 let infobipRTC = new InfobipRTC(token, options);
 ```
-Note that this doesn’t actually connect to Infobip platform, it just creates a new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connection is made via the [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set up event handlers, so you can perform something when the connection is set up, when the connection is lost, etc. Events are set up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
+Note that this doesn't actually connect to Infobip platform, it just creates a new instance of [`InfobipRTC`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC). Connection is made via the [`connect`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#connect) method. Before connecting, it is useful to set up event handlers, so you can perform something when the connection is set up, when the connection is lost, etc. Events are set up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
 
 ```
 infobipRTC.on('connected', function(event) {
@@ -85,7 +85,7 @@ Or if you want to initiate video call:
 ```
 let outgoingCall = infobipRTC.call('Alice', CallOptions.builder().setVideo(true).build());
 ```
-As you can see, the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method returns an instance of [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) as the result. With it you can track the status of your call and respond to events. Similar to the client, you can set up event handlers, so you can do something when the called subscriber answers the call, rejects it, the call is ended, etc. You set up event handlers with the following code:
+As you can see, the [`call`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#call) method returns an instance of [`OutgoingCall`](https://github.com/infobip/infobip-rtc-js/wiki/OutgoingCall) as the result. With it, you can track the status of your call and respond to events. Similar to the client, you can set up event handlers, so you can do something when the called subscriber answers the call, rejects it, the call is ended, etc. You set up event handlers with the following code:
 
 ```
 outgoingCall.on('ringing', function(event) {
@@ -112,7 +112,7 @@ outgoingCall.on('established', function(event) {
 });
 ```
 
-In case of video call, you should set to your video HTML elements both the stream from your camera and the stream that you got. Example of how you can use it:
+In case of video call, you should set to your video HTML elements both the stream from your camera, and the stream that you got. Example of how you can use it:
 
 ```
 <video id="localVideo" autoplay muted />
@@ -254,7 +254,7 @@ conference.on('local-video-removed', function (event) {
 ```
 
 The next two events are fired when another user adds or removes the video.
-You should implement these event handlers in order to add and/or remove a HTML video element with a media stream.
+You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
 ```
 conference.on('user-video-added', function (event) { 
   // add a new HTML video element with id remoteVideo-event.identity
