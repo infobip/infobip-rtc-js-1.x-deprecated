@@ -206,7 +206,7 @@ let conference = infobipRTC.joinConference('conference-demo');
 ```
 Or if you want to join the conference with your video:
 ```
-let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().video(true).build());
+let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().setVideo(true).build());
 ```
 
 As you can see, that method returns an instance of [`Conference`](https://github.com/infobip/infobip-rtc-js/wiki/Conference) as the result.
