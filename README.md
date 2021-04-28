@@ -242,13 +242,10 @@ conference.on('user-muted', function(event) {
 conference.on('user-unmuted', function(event) {
   console.log(event.identity + ' user unmuted himself.');
 });
-conference.on('local-video-added', function (event) {
+conference.on('local-camera-video-added', function (event) {
   $('#localVideo').srcObject = event.stream;
 });
-conference.on('local-video-updated', function (event) {
-  $('#localVideo').srcObject = event.stream;
-}); 
-conference.on('local-video-removed', function (event) {
+conference.on('local-camera-video-removed', function (event) {
   $('#localVideo').srcObject = null;
 });
 ```
@@ -256,12 +253,24 @@ conference.on('local-video-removed', function (event) {
 The next two events are fired when another user adds or removes the video.
 You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
 ```
-conference.on('user-video-added', function (event) { 
-  // add a new HTML video element with id remoteVideo-event.identity
-  $('#remoteVideo-' + event.identity).srcObject = event.stream;
+conference.on('user-camera-video-added', function (event) { 
+  // add a new HTML video element with id remoteVideo-event.user.identity
+  $('#remoteVideo-' + event.user.identity).srcObject = event.stream;
 });
-conference.on('user-video-removed', function (event) {
-  // remove the HTML video element with id remoteVideo-event.identity
+conference.on('user-camera-video-removed', function (event) {
+  // remove the HTML video element with id remoteVideo-event.user.identity
+});
+```
+
+The next two events are fired when another user starts or stops sharing screen.
+You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
+```
+conference.on('user-screenshare-added', function (event) { 
+  // add a new HTML video element with id remoteVideo-event.user.identity
+  $('#remoteVideo-' + event.user.identity).srcObject = event.stream;
+});
+conference.on('user-screenshare-removed', function (event) {
+  // remove the HTML video element with id remoteVideo-event.user.identity
 });
 ```
 
@@ -278,17 +287,17 @@ During the conference call, you can also mute (and unmute) your audio, by callin
 conference.mute(true);
 ```
 
-During the conference call, you can start or stop sending your video, by calling the [`localVideo`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#localVideo) method in the following way:
+During the conference call, you can start or stop sending your video, by calling the [`cameraVideo`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#cameraVideo) method in the following way:
 ```
-conference.localVideo(true);
+conference.cameraVideo(true | false);
 ```
-After this method, the `local-video-updated` event is fired.
+After this method, the `local-camera-video-added` or `local-camera-video-removed` event is fired.
 
 During the conference call, you can start or stop sharing your screen, by calling the [`screenShare`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#screenShare) method in the following way:
 ```
-conference.screenShare(true);
+conference.screenShare(true | false);
 ```
-After this method, the `local-video-updated` event is fired.
+After this method, the `local-screenshare-added` or `local-screenshare-removed` event is fired.
 
 ### Browser Compatibility
 We support up to 5 most recent versions of these browsers (unless otherwise indicated):
