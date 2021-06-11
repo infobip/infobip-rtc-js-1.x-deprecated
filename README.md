@@ -313,7 +313,7 @@ We support up to 5 most recent versions of these browsers (unless otherwise indi
 
 \* WebRTC support in Safari started with version 11.
 
-\** WebRTC support in Microsoft Edge for Android, iOS and macOS started with Chromium-based version 79.
+\** WebRTC support in Microsoft Edge for Android, iOS and macOS started with Chromium-based version 79. InfobipRTC is supported only for Chromium-based Microsoft Edge versions for Windows also.
 
 \*** WebRTC support in browsers other than Safari started with iOS version 14.3.
 
