@@ -217,7 +217,7 @@ You should implement an event handler for it, where the stream should be set to 
 
 Here is an example of how to handle [`conference events`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#on-conference).
 
-Let's assume that we do have an audio HTML elements with an id `conferenceAudio` and a video HTML elements with an id  `localVideo`.
+Let's assume that we do have an audio HTML element with the id `conferenceAudio` and video HTML elements with the ids `localVideo` and `localScreenShare`.
 ```
 conference.on('joined', function(event) {
   $('#conferenceAudio').srcObject = event.stream;
@@ -234,19 +234,31 @@ conference.on('user-joined', function(event) {
   console.log(event.user.identity + ' user joined.');
 });
 conference.on('user-left', function(event) {
-  console.log(event.identity + ' user left.');
+  console.log(event.user.identity + ' user left.');
 });
 conference.on('user-muted', function(event) {
-  console.log(event.identity + ' user muted himself.');
+  console.log(event.user.identity + ' user muted himself.');
 });
 conference.on('user-unmuted', function(event) {
-  console.log(event.identity + ' user unmuted himself.');
+  console.log(event.user.identity + ' user unmuted himself.');
+});
+conference.on('user-talking', function(event) {
+  console.log(event.user.identity + ' user started talking.');
+});
+conference.on('user-stopped-talking', function(event) {
+  console.log(event.user.identity + ' user stopped talking.');
 });
 conference.on('local-camera-video-added', function (event) {
   $('#localVideo').srcObject = event.stream;
 });
 conference.on('local-camera-video-removed', function (event) {
   $('#localVideo').srcObject = null;
+});
+conference.on('local-screenshare-added', function (event) {
+  $('#localScreenShare').srcObject = event.stream;
+});
+conference.on('local-screenshare-removed', function (event) {
+  $('#localScreenShare').srcObject = null;
 });
 ```
 
@@ -266,11 +278,11 @@ The next two events are fired when another user starts or stops sharing screen.
 You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
 ```
 conference.on('user-screenshare-added', function (event) { 
-  // add a new HTML video element with id remoteVideo-event.user.identity
-  $('#remoteVideo-' + event.user.identity).srcObject = event.stream;
+  // add a new HTML video element with id remoteScreenShare-event.user.identity
+  $('#remoteScreenShare-' + event.user.identity).srcObject = event.stream;
 });
 conference.on('user-screenshare-removed', function (event) {
-  // remove the HTML video element with id remoteVideo-event.user.identity
+  // remove the HTML video element with id remoteScreenShare-event.user.identity
 });
 ```
 
