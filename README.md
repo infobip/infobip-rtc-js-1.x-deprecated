@@ -311,6 +311,55 @@ conference.screenShare(true | false);
 ```
 After this method, the `local-screenshare-added` or `local-screenshare-removed` event is fired.
 
+### Media Device information
+
+Beside getting the information about one's media devices anytime after the user is registered to Infobip's platfom, or during the call, you can get these infos using the static methods in [`RTCMediaDevice`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice).
+```
+let RTCMediaDevice = require('infobip-rtc');
+```
+
+For audio input devices you can use the static [`RTCMediaDevice.getAudioInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioInputDevices) method:
+```
+RTCMediaDevice.getAudioInputDevices().then(
+    mediaDevices => {
+        mediaDevices.forEach(device => {
+            console.log(device.label);
+        });
+    }
+);
+```
+For audio output devices you can use the static [`RTCMediaDevice.getAudioOutputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioOutputDevices) method:
+```
+RTCMediaDevice.getAudioOutputDevices().then(
+    mediaDevices => {
+        mediaDevices.forEach(device => {
+            console.log(device.label);
+        });
+    }
+);
+```
+For video input devices you can use the static [`RTCMediaDevice.getVideoInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getVideoInputDevices) method:
+```
+RTCMediaDevice.getVideoInputDevices().then(
+    mediaDevices => {
+        mediaDevices.forEach(device => {
+            console.log(device.label);
+        });
+    }
+);
+```
+Also, you can get the stream of a specific device using the static [`RTCMediaDevice.getMediaStream`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getMediaStream) method:
+```
+RTCMediaDevice.getAudioInputDevices().then(
+    mediaDevices => {
+        mediaDevices.forEach(device => {
+            let deviceId = device.deviceId;
+            $('#audio').srcObject = RTCMediaDevice.getMediaStream(deviceId);
+        });
+    }
+);
+```
+
 ### Browser Compatibility
 We support up to 5 most recent versions of these browsers (unless otherwise indicated):
 
