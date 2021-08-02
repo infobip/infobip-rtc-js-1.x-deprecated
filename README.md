@@ -350,14 +350,12 @@ RTCMediaDevice.getVideoInputDevices().then(
 ```
 Also, you can get the stream of a specific device using the static [`RTCMediaDevice.getMediaStream`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getMediaStream) method:
 ```
-RTCMediaDevice.getAudioInputDevices().then(
-    mediaDevices => {
-        mediaDevices.forEach(device => {
-            let deviceId = device.deviceId;
-            $('#audio').srcObject = RTCMediaDevice.getMediaStream(deviceId);
-        });
-    }
-);
+let mediaDevices = await RTCMediaDevice.getAudioInputDevices();
+let device = mediaDevices[0];
+let stream = await RTCMediaDevice.getMediaStream(device.deviceId);
+$('#audio').srcObject = stream;
+//...
+RTCMediaDevice.closeMediaStream(stream);
 ```
 
 ### Browser Compatibility
