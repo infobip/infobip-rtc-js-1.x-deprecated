@@ -33,7 +33,7 @@ import {InfobipRTC} from "infobip-rtc";
 You can include our distribution file in your JavaScript from our CDN:
 
 ```
-<script src="//rtc.cdn.infobip.com/1.0.4/infobip.rtc.js"></script>
+<script src="//rtc.cdn.infobip.com/1.9.7/infobip.rtc.js"></script>
 ```
 
 The latest tag is also available:
