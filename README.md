@@ -464,14 +464,14 @@ RTCMediaDevice.closeMediaStream(stream);
 
 We support up to 5 most recent versions of these browsers (unless otherwise indicated):
 
-|                         |                               | ![chrome](icons/chrome.png)  | ![firefox](icons/firefox.png) | ![safari](icons/safari.png)  | ![edge](icons/edge.png)      | ![opera](icons/opera.png)  | ![opera](icons/explorer.png) |
+|                         |                               | ![chrome](assets/icons/chrome.png)  | ![firefox](assets/icons/firefox.png) | ![safari](assets/icons/safari.png)  | ![edge](assets/icons/edge.png)      | ![opera](assets/icons/opera.png)  | ![opera](assets/icons/explorer.png) |
 |------------------------:|------------------------------:|:----------------------------:|:-----------------------------:|:----------------------------:|:----------------------------:|:--------------------------:|:----------------------------:|
 |                         |                               | **Google Chrome**            | **Mozilla Firefox**           | **Safari***                  | **Microsoft Edge****           | **Opera**                  | **Internet Explorer**        |
-| **Android**             | ![android](icons/android.png) | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
-| **iOS*****                | ![ios](icons/ios.png)         | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
-| **Linux**               | ![linux](icons/linux.png)     | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
-| **macOS**               | ![macOs](icons/mac.png)       | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
-| **Windows**             | ![windows](icons/windows.png) | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)      | ![chrome](icons/no.png)      | ![chrome](icons/yes.png)     | ![chrome](icons/yes.png)   | ![chrome](icons/no.png)      |
+| **Android**             | ![android](assets/icons/android.png) | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)      | ![chrome](assets/icons/no.png)      | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)   | ![chrome](assets/icons/no.png)      |
+| **iOS*****                | ![ios](assets/icons/ios.png)         | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)      | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)   | ![chrome](assets/icons/no.png)      |
+| **Linux**               | ![linux](assets/icons/linux.png)     | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)      | ![chrome](assets/icons/no.png)      | ![chrome](assets/icons/no.png)      | ![chrome](assets/icons/yes.png)   | ![chrome](assets/icons/no.png)      |
+| **macOS**               | ![macOs](assets/icons/mac.png)       | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)      | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)   | ![chrome](assets/icons/no.png)      |
+| **Windows**             | ![windows](assets/icons/windows.png) | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)      | ![chrome](assets/icons/no.png)      | ![chrome](assets/icons/yes.png)     | ![chrome](assets/icons/yes.png)   | ![chrome](assets/icons/no.png)      |
 
 \* WebRTC support in Safari started with version 11.
 
