@@ -279,6 +279,14 @@ Or if you want to join the conference with your video:
 let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().setVideo(true).build());
 ```
 
+By default, if you lose an internet connection during the conference call, it will be terminated, and the rest of users will receive a `user-left` event.
+But if you start the conference with the `autoReconnect` flag set to `true`, after losing the connection, you will receive a `reconnecting` event 
+and we will immediately try to connect you back. Once we succeed, you will get a `reconnected` event.
+
+```javascript
+let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().setAutoReconnect(true).build());
+```
+
 As you can see, that method returns an instance of
 [`Conference`](https://github.com/infobip/infobip-rtc-js/wiki/Conference) as the result.
 With it, you can track the status of your conference call,
@@ -305,6 +313,14 @@ conference.on('left', function(event) {
 });
 conference.on('error', function(event) {
   console.log('Error!');
+});
+conference.on('reconnecting', function(event) {
+    console.log('You left the conference due to connectivity issues. We will try to reconnect you!');
+});
+conference.on('reconnected', function(event) {
+    $('#conferenceAudio').srcObject = event.stream;
+    var users = event.users.map(user => user.identity).join(", ")
+    console.log('You have beed reconnected to the conference with ' + event.users.length + " more participants: " + users);
 });
 conference.on('user-joined', function(event) {
   console.log(event.user.identity + ' user joined.');
