@@ -16,7 +16,8 @@ Infobip RTC SDK requires ES6. Also secure connection over HTTPS is required, exc
 ### First-time setup
 
 In order to use Infobip RTC, you need to have Web and In-app Calls enabled on your account and that's it!
-You are ready to make Web and In-app calls. To learn how to enable them see [the documentation](https://www.infobip.com/docs/voice-and-video/webrtc#set-up-web-and-in-app-calls).
+You are ready to make Web and In-app calls. To learn how to enable them
+see [the documentation](https://www.infobip.com/docs/voice-and-video/webrtc#set-up-web-and-in-app-calls).
 
 ### Getting SDK
 
@@ -44,7 +45,7 @@ import {InfobipRTC} from "infobip-rtc";
 You can include our distribution file in your JavaScript from our CDN:
 
 ```html
-<script src="//rtc.cdn.infobip.com/1.9.8/infobip.rtc.js"></script>
+<script src="//rtc.cdn.infobip.com/1.14.9/infobip.rtc.js"></script>
 ```
 
 The latest tag is also available:
@@ -64,7 +65,7 @@ we can generate a token assigned to that specific subscriber.
 With that token, your subscribers can connect to our platform (using Infobip RTC SDK).
 
 To generate these tokens for your subscribers, you need to call our
-[`/webrtc/1/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method using proper parameters.
+[`/webrtc/1/token`](https://dev.infobip.com/webrtc/generate-token) HTTP API method using proper parameters.
 There you authenticate yourself against Infobip platform, so we can relate the subscriber's token to you.
 Typically, generating a token occurs after your subscribers are authenticated inside your application.
 You will receive the token in a response that you will use to instantiate
@@ -78,7 +79,7 @@ You can do that using these commands:
 
 ```javascript
 let token = obtainToken(); // here you call '/webrtc/1/token'
-let options = { debug: true }
+let options = {debug: true}
 let infobipRTC = new InfobipRTC(token, options);
 ```
 
@@ -90,11 +91,11 @@ when the connection is lost, etc.
 Events are set up via [`on`](https://github.com/infobip/infobip-rtc-js/wiki/InfobipRTC#on) method:
 
 ```javascript
-infobipRTC.on('connected', function(event) {
-  console.log('Connected with identity: ' + event.identity);
+infobipRTC.on('connected', function (event) {
+    console.log('Connected with identity: ' + event.identity);
 });
-infobipRTC.on('disconnected', function(event) {
-  console.log('Disconnected!');
+infobipRTC.on('disconnected', function (event) {
+    console.log('Disconnected!');
 });
 ```
 
@@ -126,17 +127,17 @@ you can set up event handlers, so you can do something when the called subscribe
 rejects it, the call is ended, etc. You set up event handlers with the following code:
 
 ```javascript
-outgoingCall.on('ringing', function(event) {
-  console.log('Call is ringing on Alice\'s device!');
+outgoingCall.on('ringing', function (event) {
+    console.log('Call is ringing on Alice\'s device!');
 });
-outgoingCall.on('established', function(event) {
-  console.log('Alice answered call!');
+outgoingCall.on('established', function (event) {
+    console.log('Alice answered call!');
 });
-outgoingCall.on('hangup', function(event) {
-  console.log('Call is done! Status: ' + JSON.stringify(event.status));
+outgoingCall.on('hangup', function (event) {
+    console.log('Call is done! Status: ' + JSON.stringify(event.status));
 });
-outgoingCall.on('error', function(event) {
-  console.log('Oops, something went very wrong! Message: ' + JSON.stringify(event));
+outgoingCall.on('error', function (event) {
+    console.log('Oops, something went very wrong! Message: ' + JSON.stringify(event));
 });
 ```
 
@@ -145,11 +146,11 @@ It can be handled in an `established` event where you have the remote media whic
 This is an example of how you can use it:
 
 ```javascript
-<audio id="remoteAudio" autoplay />
+<audio id="remoteAudio" autoplay/>
 
-outgoingCall.on('established', function(event) {
-  console.log('Alice answered call!');
-  document.getElementById('remoteAudio').srcObject = event.remoteStream;
+outgoingCall.on('established', function (event) {
+    console.log('Alice answered call!');
+    document.getElementById('remoteAudio').srcObject = event.remoteStream;
 });
 ```
 
@@ -157,13 +158,13 @@ In case of video call, you should set to your video HTML elements both the strea
 and the stream that you got. Example of how you can use it:
 
 ```javascript
-<video id="localVideo" autoplay muted />
-<video id="remoteVideo" autoplay />
+<video id="localVideo" autoplay muted/>
+<video id="remoteVideo" autoplay/>
 
-outgoingCall.on('established', function(event) {
-  console.log('Alice answered video call!');
-  document.getElementById('localVideo').srcObject = event.localStream;
-  document.getElementById('remoteVideo').srcObject = event.remoteStream;
+outgoingCall.on('established', function (event) {
+    console.log('Alice answered video call!');
+    document.getElementById('localVideo').srcObject = event.localStream;
+    document.getElementById('remoteVideo').srcObject = event.remoteStream;
 });
 ```
 
@@ -194,13 +195,13 @@ To check if the audio is muted, call the
 [`muted`](https://github.com/infobip/infobip-rtc-js/wiki/Call#muted) method in the following way:
 
 ```javascript
-boolean audioMuted = outgoingCall.muted();
+let audioMuted = outgoingCall.muted();
 ```
 
 Also, you can check the [`call status`](https://github.com/infobip/infobip-rtc-js/wiki/CallStatus):
 
 ```javascript
-CallStatus status = outgoingCall.status();
+let status = outgoingCall.status();
 ```
 
 Also, you can check information such as [`duration`](https://github.com/infobip/infobip-rtc-js/wiki/Call#duration),
@@ -225,14 +226,16 @@ One of the most common things to do is to show Answer and Reject options on the 
 For the purpose of this guide, let's look at an example that answers the incoming call as soon as it arrives:
 
 ```javascript
-infobipRTC.on('incoming-call', function(incomingCallEvent) {
-  const incomingCall = incomingCallEvent.incomingCall;
-  console.log('Received incoming call from: ' + incomingCall.source().identity);
-   
-  incomingCall.on('established', function() {});
-  incomingCall.on('hangup', function() {});
- 
-  incomingCall.accept(); // or incomingCall.decline();
+infobipRTC.on('incoming-call', function (incomingCallEvent) {
+    const incomingCall = incomingCallEvent.incomingCall;
+    console.log('Received incoming call from: ' + incomingCall.source().identity);
+
+    incomingCall.on('established', function () {
+    });
+    incomingCall.on('hangup', function () {
+    });
+
+    incomingCall.accept(); // or incomingCall.decline();
 });
 ```
 
@@ -279,8 +282,10 @@ Or if you want to join the conference with your video:
 let conference = infobipRTC.joinConference('conference-demo', ConferenceOptions.builder().setVideo(true).build());
 ```
 
-By default, if you lose an internet connection during the conference call, it will be terminated, and the rest of users will receive a `user-left` event.
-But if you start the conference with the `autoReconnect` flag set to `true`, after losing the connection, you will receive a `reconnecting` event 
+By default, if you lose an internet connection during the conference call, it will be terminated, and the rest of users
+will receive a `user-left` event.
+But if you start the conference with the `autoReconnect` flag set to `true`, after losing the connection, you will
+receive a `reconnecting` event
 and we will immediately try to connect you back. Once we succeed, you will get a `reconnected` event.
 
 ```javascript
@@ -297,60 +302,61 @@ It contains an audio media stream and a list of users that are already at the co
 You should implement an event handler for it, where the stream should be set to the audio HTML element,
 and the other conference participants might be shown to the user.
 
-Here is an example of how to handle [`conference events`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#on-conference).
+Here is an example of how to
+handle [`conference events`](https://github.com/infobip/infobip-rtc-js/wiki/Conference#on-conference).
 
 Let's assume that we do have an audio HTML element with the id `conferenceAudio` and video HTML elements with the ids
 `localVideo` and `localScreenShare`.
 
 ```javascript
-conference.on('joined', function(event) {
-  $('#conferenceAudio').srcObject = event.stream;
-  var users = event.users.map(user => user.identity).join(", ")
-  console.log('You have joined the conference with ' + event.users.length + " more participants: " + users);
+conference.on('joined', function (event) {
+    $('#conferenceAudio').srcObject = event.stream;
+    var users = event.users.map(user => user.identity).join(", ")
+    console.log('You have joined the conference with ' + event.users.length + " more participants: " + users);
 });
-conference.on('left', function(event) {
-  console.log('You have left the conference.');
+conference.on('left', function (event) {
+    console.log('You have left the conference.');
 });
-conference.on('error', function(event) {
-  console.log('Error!');
+conference.on('error', function (event) {
+    console.log('Error!');
 });
-conference.on('reconnecting', function(event) {
+conference.on('reconnecting', function (event) {
     console.log('You left the conference due to connectivity issues. We will try to reconnect you!');
 });
-conference.on('reconnected', function(event) {
+conference.on('reconnected', function (event) {
     $('#conferenceAudio').srcObject = event.stream;
     var users = event.users.map(user => user.identity).join(", ")
     console.log('You have beed reconnected to the conference with ' + event.users.length + " more participants: " + users);
 });
-conference.on('user-joined', function(event) {
-  console.log(event.user.identity + ' user joined.');
+conference.on('user-joined', function (event) {
+    console.log(event.user.identity + ' user joined.');
 });
-conference.on('user-left', function(event) {
-  console.log(event.user.identity + ' user left.');
+conference.on('user-left', function (event) {
+    console.log(event.user.identity + ' user left.');
 });
-conference.on('user-muted', function(event) {
-  console.log(event.user.identity + ' user muted himself.');
+conference.on('user-muted', function (event) {
+    console.log(event.user.identity + ' user muted himself.');
 });
-conference.on('user-unmuted', function(event) {
-  console.log(event.user.identity + ' user unmuted himself.');
+conference.on('user-unmuted', function (event) {
+    console.log(event.user.identity + ' user unmuted himself.');
 });
-conference.on('user-talking', function(event) {
-  console.log(event.user.identity + ' user started talking.');
+conference.on('user-talking', function (event) {
+    console.log(event.user.identity + ' user started talking.');
 });
-conference.on('user-stopped-talking', function(event) {
-  console.log(event.user.identity + ' user stopped talking.');
+conference.on('user-stopped-talking', function (event) {
+    console.log(event.user.identity + ' user stopped talking.');
 });
 conference.on('local-camera-video-added', function (event) {
-  $('#localVideo').srcObject = event.stream;
+    $('#localVideo').srcObject = event.stream;
 });
 conference.on('local-camera-video-removed', function (event) {
-  $('#localVideo').srcObject = null;
+    $('#localVideo').srcObject = null;
 });
 conference.on('local-screenshare-added', function (event) {
-  $('#localScreenShare').srcObject = event.stream;
+    $('#localScreenShare').srcObject = event.stream;
 });
 conference.on('local-screenshare-removed', function (event) {
-  $('#localScreenShare').srcObject = null;
+    $('#localScreenShare').srcObject = null;
 });
 ```
 
@@ -358,12 +364,12 @@ The next two events are fired when another user adds or removes the video.
 You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
 
 ```javascript
-conference.on('user-camera-video-added', function (event) { 
-  // add a new HTML video element with id remoteVideo-event.user.identity
-  $('#remoteVideo-' + event.user.identity).srcObject = event.stream;
+conference.on('user-camera-video-added', function (event) {
+    // add a new HTML video element with id remoteVideo-event.user.identity
+    $('#remoteVideo-' + event.user.identity).srcObject = event.stream;
 });
 conference.on('user-camera-video-removed', function (event) {
-  // remove the HTML video element with id remoteVideo-event.user.identity
+    // remove the HTML video element with id remoteVideo-event.user.identity
 });
 ```
 
@@ -371,12 +377,12 @@ The next two events are fired when another user starts or stops sharing screen.
 You should implement these event handlers in order to add and/or remove an HTML video element with a media stream.
 
 ```javascript
-conference.on('user-screenshare-added', function (event) { 
-  // add a new HTML video element with id remoteScreenShare-event.user.identity
-  $('#remoteScreenShare-' + event.user.identity).srcObject = event.stream;
+conference.on('user-screenshare-added', function (event) {
+    // add a new HTML video element with id remoteScreenShare-event.user.identity
+    $('#remoteScreenShare-' + event.user.identity).srcObject = event.stream;
 });
 conference.on('user-screenshare-removed', function (event) {
-  // remove the HTML video element with id remoteScreenShare-event.user.identity
+    // remove the HTML video element with id remoteScreenShare-event.user.identity
 });
 ```
 
@@ -419,14 +425,16 @@ After this method, the `local-screenshare-added` or `local-screenshare-removed` 
 ### Media Device information
 
 Beside getting the information about one's media devices anytime after the user is registered to Infobip's platfom,
-or during the call, you can get these infos using the static methods in [`RTCMediaDevice`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice).
+or during the call, you can get these infos using the static methods
+in [`RTCMediaDevice`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice).
 
 ```javascript
 let RTCMediaDevice = require('infobip-rtc');
 ```
 
 For audio input devices you can use the static
-[`RTCMediaDevice.getAudioInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioInputDevices) method:
+[`RTCMediaDevice.getAudioInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioInputDevices)
+method:
 
 ```javascript
 RTCMediaDevice.getAudioInputDevices().then(
@@ -439,7 +447,8 @@ RTCMediaDevice.getAudioInputDevices().then(
 ```
 
 For audio output devices you can use the static
-[`RTCMediaDevice.getAudioOutputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioOutputDevices) method:
+[`RTCMediaDevice.getAudioOutputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getAudioOutputDevices)
+method:
 
 ```javascript
 RTCMediaDevice.getAudioOutputDevices().then(
@@ -452,7 +461,8 @@ RTCMediaDevice.getAudioOutputDevices().then(
 ```
 
 For video input devices you can use the static
-[`RTCMediaDevice.getVideoInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getVideoInputDevices) method:
+[`RTCMediaDevice.getVideoInputDevices`](https://github.com/infobip/infobip-rtc-js/wiki/RTCMediaDevice#getVideoInputDevices)
+method:
 
 ```javascript
 RTCMediaDevice.getVideoInputDevices().then(
@@ -497,5 +507,6 @@ InfobipRTC is supported only for Chromium-based Microsoft Edge versions for Wind
 \*** WebRTC support in browsers other than Safari started with iOS version 14.3.
 
 > **Note**: Mobile browsers are not able to receive calls and maintain call connectivity in the background.
-> We recommend using [iOS](https://github.com/infobip/infobip-rtc-ios) and [Android](https://github.com/infobip/infobip-rtc-android) SDKs
-for creating mobile WebRTC Applications.
+> We recommend using [iOS](https://github.com/infobip/infobip-rtc-ios)
+> and [Android](https://github.com/infobip/infobip-rtc-android) SDKs
+> for creating mobile WebRTC Applications.
